@@ -80,4 +80,48 @@ describe("Order", function() {
             done();
         });
     });
+
+    it("should calculate the total amount before saving", function(done) {
+        let order = new Order();
+        order.items.push({
+            price: 10,
+            quantity: 10,
+            discountPercentage: 0
+        });
+        order.discountPercentage = 0;
+        order.validate(function(){
+            expect(order.amount).to.equal(order.items[0].price * order.items[0].quantity);
+            done();
+        });
+    });
+
+    it("should calculate the total amount before saving", function(done) {
+        let order = new Order();
+        order.items.push({
+            price: 10,
+            quantity: 10,
+            discountPercentage: 0
+        });
+        order.discountPercentage = 10;
+        order.validate(function(){
+            expect(order.amount).to.equal(90);
+            done();
+        });
+    });
+
+    it("should calculate the total amount before saving", function(done) {
+        let order = new Order();
+        order.items.push({
+            price: 10,
+            quantity: 10,
+            discountPercentage: 10
+        });
+        order.discountPercentage = 10;
+        order.validate(function(){
+            expect(order.amount).to.equal(81);
+            done();
+        });
+    });
+
+    
 });

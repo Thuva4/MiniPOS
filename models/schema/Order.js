@@ -42,7 +42,8 @@ let OrderSchema = new mongoose.Schema({
 
 OrderSchema.pre("validate", function (next) {   
     this.amount = this.items.reduce(function(accumulator, item) {
-        return accumulator + (item.price * item.quantity);}, 0);
+        return accumulator + (item.price * item.quantity * (1 - item.discountPercentage / 100));
+    }, 0);
     this.amount = this.amount - (this.amount * this.discountPercentage / 100);
     next();
 });

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf dist && webpack --mode development",
     "start": "node ./dist/server.js",
-    "test": " mocha test/ --recursive"
+    "test": "nyc mocha test/ --recursive"
   },
   "dependencies": {
     "async": "^1.5.2",
@@ -33,6 +33,7 @@
     "eslint": "^5.12.1",
     "eslint-loader": "^2.1.1",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "supertest": "^3.4.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
