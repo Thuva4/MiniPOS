@@ -1,0 +1,42 @@
+{
+  "name": "minipos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode development",
+    "start": "node ./dist/server.js",
+    "test": " mocha test/ --recursive"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "bcrypt": "^3.0.3",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "http-proxy": "^1.12.0",
+    "mongodb": "^3.1.12",
+    "mongoose": "^4.13.18",
+    "mysql": "^2.9.0",
+    "node-mysql": "^0.4.2",
+    "sinon": "^7.2.3",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.12.1",
+    "eslint-loader": "^2.1.1",
+    "mocha": "^5.2.0",
+    "supertest": "^3.4.1",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

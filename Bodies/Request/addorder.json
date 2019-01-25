@@ -1,0 +1,21 @@
+{
+    "createdDate": "string",
+    "items": [
+      {
+        "itemId": "5c48575af0c54979d14846c7",
+        "name": "Apple",
+        "quantity": 10,
+        "category": "Food",
+        "price": 55
+      },
+      {
+        "itemId": "5c48575af0c54979d14846c9",
+        "name": "Apple Red",
+        "quantity": 5,
+        "category": "Food",
+        "price": 100
+      }
+    ],
+    "openStatus": true,
+    "userId": "5c46e43f62f80a16efa53d18"
+  }

@@ -1,0 +1,28 @@
+{
+    "__v": 0,
+    "amount": 1050,
+    "createdDate": "string",
+    "openStatus": true,
+    "userId": "5c46e43f62f80a16efa53d18",
+    "_id": "5c498330e2aede36baa12ad3",
+    "items": [
+      {
+        "amount": 550,
+        "itemId": "5c48575af0c54979d14846c7",
+        "name": "Apple",
+        "quantity": 10,
+        "category": "Food",
+        "price": 55,
+        "_id": "5c498330e2aede36baa12ad5"
+      },
+      {
+        "amount": 500,
+        "itemId": "5c48575af0c54979d14846c9",
+        "name": "Apple Red",
+        "quantity": 5,
+        "category": "Food",
+        "price": 100,
+        "_id": "5c498330e2aede36baa12ad4"
+      }
+    ]
+  }
