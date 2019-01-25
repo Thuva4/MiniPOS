@@ -12,7 +12,7 @@ let deleteOrderedItem = function(req, res, callback) {
                     Order.findById(orderId)
                         .then((order) => {
                             const items = order.items.filter(orderItem => orderItem.itemId != itemId);
-                            order.items = items;     
+                            order.items = items;  
                             return order.save(); 
                         })
                         .then((order) => {
@@ -28,14 +28,14 @@ let deleteOrderedItem = function(req, res, callback) {
                 } else {
                     let error = {
                         status: 400,
-                        message: "Order Id is not valid"
+                        message: "Item Id is not valid"
                     };
                     callback(error, null);
                 }
             } else {
                 let error = {
                     status: 400,
-                    message: "Item Id is required."
+                    message: "Item Id is required"
                 };
                 callback(error, null);
             }
@@ -49,7 +49,7 @@ let deleteOrderedItem = function(req, res, callback) {
     } else {
         let error = {
             status: 400,
-            message: "Object Id is required."
+            message: "Order Id is required"
         };
         callback(error, null);
     }

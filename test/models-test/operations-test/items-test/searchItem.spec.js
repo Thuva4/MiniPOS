@@ -1,6 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-lets */
-let expect = require("chai").expect;
 let sinon = require("sinon");
 
 let Item = require("../../../../models/schema/Item");
