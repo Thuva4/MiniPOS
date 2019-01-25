@@ -1,7 +1,7 @@
 let Item = require("../../schema/Item");
 
 let addItem = function(req, res, callback) {
-    if (req.body && req.body.name && req.body.price && req.body.category){
+    if (req.body){
         var itemData = {
             name: req.body.name,
             price: req.body.price,

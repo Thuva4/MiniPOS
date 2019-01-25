@@ -1,7 +1,7 @@
 let express = require("express");
 
 let addItem = require("../models/operations/items/addItem");
-let searchItems = require("../models/operations/items/serachItems");
+let searchItems = require("../models/operations/items/searchItems");
 let router = express.Router();
 
 router.get("/", function(req, res){
