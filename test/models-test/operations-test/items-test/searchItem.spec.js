@@ -11,7 +11,6 @@ describe("search Item Function", function() {
         sinon.stub(Item, "find");
     });
  
- 
     afterEach(function() {
         Item.find.restore();
     });
