@@ -15,7 +15,7 @@ let UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", function (next) {
-    var user = this;
+    let user = this;
     bcrypt.hash(user.password, 10, function (err, hash){
         if (err) {
             return next(err);
@@ -26,7 +26,7 @@ UserSchema.pre("save", function (next) {
 });
 
 UserSchema.methods.comparePassword = function(givenPassword, callback){
-    var user = this;
+    let user = this;
     bcrypt.compare(givenPassword, user.password, function(err, isMatch){
         if(err){
             callback(err);

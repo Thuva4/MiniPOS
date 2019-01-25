@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-var sinon = require("sinon");
+let sinon = require("sinon");
 
 let Order = require("../../../../models/schema/Order");
 let addOrder = require("../../../../models/operations/orders/addOrder");
@@ -14,7 +14,7 @@ describe("Add Item Function", function() {
     });
  
     it("should add order", function() {
-        var testOrder =  {
+        let testOrder =  {
             "_id": "5c4aba45988293116fce53b2",
             "amount": 920,
             "createdDate": "1995-12-16T21:54:00.000Z",
@@ -37,7 +37,7 @@ describe("Add Item Function", function() {
         };
 
         Order.create.yields(null, testOrder);
-        var req = { body: { } };
+        let req = { body: { } };
         let res = {};
         let callback = sinon.stub();
  

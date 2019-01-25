@@ -2,7 +2,7 @@ let Order = require("../../schema/Order");
 
 let addOrder = function(req, res, callback) {
     if (req.body){
-        var orderData = {
+        let orderData = {
             ...req.body,
             orderedDate: new Date(req.body.orderedDate)
         };

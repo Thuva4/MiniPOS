@@ -2,7 +2,7 @@ let User = require("../../schema/User");
 
 let register = function(req, res, callback) {
     if (req.body && req.body.username && req.body.password){
-        var userData = {
+        let userData = {
             username: req.body.username,
             password: req.body.password
         };

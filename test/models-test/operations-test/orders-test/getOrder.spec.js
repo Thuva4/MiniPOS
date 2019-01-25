@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-var expect = require("chai").expect;
-var sinon = require("sinon");
+let sinon = require("sinon");
 
 let Order = require("../../../../models/schema/Order");
 let getOrder = require("../../../../models/operations/orders/getOrder");
@@ -28,7 +26,7 @@ let testOrder =  {
     ]
 };
  
-describe("search Item Function", function() {
+describe("get order Function", function() {
     beforeEach(function() {
         sinon.stub(Order, "find");
     });
@@ -37,11 +35,11 @@ describe("search Item Function", function() {
         Order.find.restore();
     });
  
-    it("should send all items", function() {
+    it("should be error if orderId is empty", function() {
 
-        var expectedModels = [testOrder];
+        let expectedModels = [testOrder];
         Order.find.yields(null, expectedModels);
-        var req = { params: {}};
+        let req = { params: {}};
         let res = {};
         let callback = sinon.stub();
  
@@ -52,11 +50,11 @@ describe("search Item Function", function() {
         sinon.assert.calledWith(callback, error, null);
     });
 
-    it("should send all items", function() {
+    it("should error if orderId is invalid", function() {
 
-        var expectedModels = [testOrder];
+        let expectedModels = [testOrder];
         Order.find.yields(null, expectedModels);
-        var req = { params: {orderId: "random"}};
+        let req = { params: {orderId: "random"}};
         let res = {};
         let callback = sinon.stub();
  
@@ -67,11 +65,10 @@ describe("search Item Function", function() {
         sinon.assert.calledWith(callback, error, null);
     });
 
-    it("should send all items", function() {
+    it("should send order details", function() {
 
-        var expectedModels = [testOrder];
         Order.find.yields(null, testOrder);
-        var req = { params: {orderId: "5c4aba45988293116fce53b2"}};
+        let req = { params: {orderId: "5c4aba45988293116fce53b2"}};
         let res = {};
         let callback = sinon.stub();
  

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-var sinon = require("sinon");
+let sinon = require("sinon");
 
 let Item = require("../../../../models/schema/Item");
 let addItem = require("../../../../models/operations/items/addItem");
@@ -14,14 +14,14 @@ describe("Add Item Function", function() {
     });
  
     it("should send all items", function() {
-        var testItem1 =  {
+        let testItem1 =  {
             "name": "Apple Red",
             "category": "Food",
             "price": 55
         };
 
         Item.create.yields(null, testItem1);
-        var req = { body: { } };
+        let req = { body: { } };
         let res = {};
         let callback = sinon.stub();
  
