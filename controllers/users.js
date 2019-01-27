@@ -7,14 +7,15 @@ let logout = require("../models/operations/users/logout");
 
 
 router.post("/login", function(req, res){
-    login(req, res, function(err, data) {
+    login(req, res, function(err, user) {
         if(err) {
-            res.json({"error": true, "message": "Error logged in"});
+            res.status(err.status).send(err.message);
         } else {
-            if(data){
-                res.json({"success": true, "Message": "Authentication"});
-            } else {
-                res.json({"success": false, "Message": "Athentication is failed"});
+            if(user){
+                req.session.userId = user._id;
+                res.status(200).send({
+                    _id: user._id
+                });
             }
         }
     });

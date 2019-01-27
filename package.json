@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "rm -rf dist && webpack --mode development",
-    "start": "node ./dist/server.js",
+    "start": "node server.js",
     "test": "nyc mocha test/ --recursive"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "chai": "^4.2.0",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "http-proxy": "^1.12.0",

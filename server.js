@@ -6,7 +6,7 @@ let cookieParser = require("cookie-parser");
 let MongoStore = require("connect-mongo")(session);
 let webpack  =  require("webpack");
 let webpackDevMiddleware  = require("webpack-dev-middleware");
-
+let cors = require("cors");
 let config = require("./webpack.config");
 
 const compiler = webpack(config);
@@ -36,7 +36,13 @@ app.use(session({
 }));
 
 
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}));
+
 app.use(router);
+
 
 app.listen("3001", function() {
 });
