@@ -28,7 +28,7 @@ let login = function (req, res, callback) {
             } catch(err){
                 let error = {
                     status : 400,
-                    message : err
+                    message : "Athentication Failed!"
                 };
                 callback(error);
             }

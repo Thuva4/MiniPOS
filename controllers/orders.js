@@ -19,7 +19,7 @@ router.get("/:orderId", function(req, res){
 router.get("/", function(req, res){
     getOrders(req, res, function(err, data){
         if(err) {
-            res.status(err.status).send(err.message);
+            res.status(err.status).json(err.message);
         } else{
             res.status(200).send(data);
         }

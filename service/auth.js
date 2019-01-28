@@ -3,7 +3,7 @@ function requiresLogin(req, res, next) {
         return next();
     } else {
         let err = {
-            status: 400,
+            status: 401,
             message: "You must be logged in to view this page"
         };
         return next(err);

@@ -9,7 +9,7 @@ let logout = require("../models/operations/users/logout");
 router.post("/login", function(req, res){
     login(req, res, function(err, user) {
         if(err) {
-            res.status(err.status).send(err.message);
+            res.status(err.status).send({message: err.message});
         } else {
             if(user){
                 req.session.userId = user._id;

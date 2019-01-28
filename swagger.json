@@ -139,7 +139,6 @@
         }
       }
     },
-    
     "/orders": {
       "get": {
         "description": "Returns all the open orders from the system.\n",
@@ -157,7 +156,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Order"
+                    "$ref": "#/components/schemas/GetOrder"
                   }
                 }
               }
@@ -509,6 +508,26 @@
       
     },
     "schemas": {
+      "GetOrder": {
+        "required": [
+          "createdDate",
+          "_id",
+          "amount"
+        ],
+        "properties": {
+          "createdDate": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "format":"int32"
+          }
+
+        }
+      },
       "Order": {
         "allOf": [
           {

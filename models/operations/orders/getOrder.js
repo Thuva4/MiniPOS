@@ -6,7 +6,7 @@ let getOrder = function(req, res, callback) {
         let orderId = req.params.orderId;
         if (mongoose.Types.ObjectId.isValid(orderId)) {
             
-            Order.find({"_id": mongoose.Types.ObjectId(orderId)}, function(err, orders){
+            Order.findOne({"_id": mongoose.Types.ObjectId(orderId)}, function(err, orders){
                 if(err){
                     callback(err, null);
                 } else{
