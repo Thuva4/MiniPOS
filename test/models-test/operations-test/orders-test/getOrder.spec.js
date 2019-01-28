@@ -28,16 +28,16 @@ let testOrder =  {
 
 describe("get order Function", function() {
     beforeEach(function() {
-        sinon.stub(Order, "find");
+        sinon.stub(Order, "findOne");
     });
  
     afterEach(function() {
-        Order.find.restore();
+        Order.findOne.restore();
     });
  
     it("should be error if orderId is empty", function() {
 
-        Order.find.yields(null, testOrder);
+        Order.findOne.yields(null, testOrder);
         let req = { params: {}};
         let res = {};
         let callback = sinon.stub();
@@ -51,7 +51,7 @@ describe("get order Function", function() {
 
     it("should error if orderId is invalid", function() {
 
-        Order.find.yields(null, testOrder);
+        Order.findOne.yields(null, testOrder);
         let req = { params: {orderId: "random"}};
         let res = {};
         let callback = sinon.stub();
@@ -65,7 +65,7 @@ describe("get order Function", function() {
 
     it("should send order details", function() {
 
-        Order.find.yields(null, testOrder);
+        Order.findOne.yields(null, testOrder);
         let req = { params: {orderId: "5c4aba45988293116fce53b2"}};
         let res = {};
         let callback = sinon.stub();
