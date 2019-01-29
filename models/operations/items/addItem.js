@@ -5,7 +5,8 @@ let addItem = function(req, res, callback) {
         let itemData = {
             name: req.body.name,
             price: req.body.price,
-            category: req.body.category
+            category: req.body.category,
+            discountPercentage: req.body.discountPercentage
         };
         Item.create(itemData, function (err, item) {
             if (err) {
