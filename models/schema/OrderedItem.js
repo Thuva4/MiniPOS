@@ -48,7 +48,7 @@ let OrderedItemSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(v) {
-                return v>=0 && v<1000000;
+                return v>0 && v<1000000;
             },
             message: "Quantity should be in the range of 0 to 1 million!"
         }

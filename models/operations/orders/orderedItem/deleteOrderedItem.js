@@ -12,7 +12,7 @@ let deleteOrderedItem = function(req, res, callback) {
                     Order.findById(orderId)
                         .then((order) => {
                             const items = order.items.filter(orderItem => orderItem.itemId != itemId);
-                            order.items = items;  
+                            order.items = items; 
                             return order.save(); 
                         })
                         .then((order) => {
