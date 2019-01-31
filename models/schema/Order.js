@@ -10,6 +10,10 @@ let OrderSchema = new mongoose.Schema({
         type: Boolean,
         required:  true
     },
+    modifiedDate:{
+        type: Date,
+        required: true
+    },
     items: {
         type: [OrderedItemSchema],
         required: true
@@ -41,6 +45,7 @@ let OrderSchema = new mongoose.Schema({
 });
 
 OrderSchema.pre("validate", function (next) {   
+    this.modifiedDate = new Date(); 
     this.amount = this.items.reduce(function(accumulator, item) {
         return accumulator + (item.price * item.quantity * (1 - item.discountPercentage / 100));
     }, 0);
