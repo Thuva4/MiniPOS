@@ -8,7 +8,7 @@ let webpack  =  require("webpack");
 let webpackDevMiddleware  = require("webpack-dev-middleware");
 let cors = require("cors");
 let config = require("./webpack.config");
-
+let helmet = require("helmet");
 const compiler = webpack(config);
 let db = require("./models/db.js");
 
@@ -34,7 +34,7 @@ app.use(session({
         mongooseConnection: db
     })
 }));
-
+app.use(helmet());
 
 app.use(cors({
     origin: "http://localhost:3000",

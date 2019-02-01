@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 let express = require("express");
 let router  = express.Router();
 
 let login = require("../models/operations/users/login");
 let register = require("../models/operations/users/register");
 let logout = require("../models/operations/users/logout");
+const requiresLogin = require("../service/auth");
 
 
 router.post("/login", function(req, res){
@@ -21,6 +23,12 @@ router.post("/login", function(req, res){
     });
 });
 
+router.get("/login", requiresLogin, function(req, res){  
+    res.status(200).send({
+        _id: req.session
+    });
+});
+
 router.get("/logout", require("../service/auth"), function(req, res){
     logout(req, res, function(err, data) {
         if(err) {
@@ -31,15 +39,6 @@ router.get("/logout", require("../service/auth"), function(req, res){
     });
 });
 
-router.get("/user", function(req, res){
-    logout(req, res, function(err, data){
-        if(err) {
-            res.status(400).send(err);
-        } else{
-            res.status(200).send(data);
-        }
-    });
-});
 
 router.post("/user", function(req, res){
     register(req, res, function(err, data){
