@@ -1,0 +1,16 @@
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGIN_REQUESTED = "LOGIN_REQUESTED";
+
+export const ADD_ALERT = "ADD_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";
+
+export const ORDER_UPDATED = "ORDER_UPDATED";
+export const ORDERS_LOADED = "ORDERS_LOADED";
+export const ORDER_ADDED = "ORDER_ADDED";
+export const ORDER_UPDATE_MODAL = "ORDER_UPDATE_MODAL";
+export const ORDER_NEW_MODAL = "ORDER_NEW_MODAL"
+
+export const ITEMS_LOADED = "ITEMS_LOADED";
+
