@@ -1,4 +1,5 @@
-node_modules
+Backend/node_modules
+Backend/.vscode
+Backend/coverage
+Backend/.nyc_output
 .vscode
-coverage
-.nyc_output
