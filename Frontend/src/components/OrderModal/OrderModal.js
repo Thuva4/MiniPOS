@@ -333,7 +333,7 @@ class ConnectedOrderModal extends PureComponent {
                                 <TableCell className={classes.tablecell}>
                                   <div
                                     style={{
-                                      overflow: "hidden",
+                                      // overflow: "hidden",
                                       float: "left"
                                     }}
                                   >
@@ -343,7 +343,7 @@ class ConnectedOrderModal extends PureComponent {
                                           this._removeItem(e, item.itemId)
                                         }
                                         className={classes.button}
-                                        aria-label="Add to shopping cart"
+                                        aria-label="Remove item from order"
                                       >
                                         <DeleteRoundedIcon />
                                       </IconButton>
@@ -353,8 +353,8 @@ class ConnectedOrderModal extends PureComponent {
                                         onClick={e =>
                                           this._removeItem(e, item.itemId)
                                         }
-                                        className={classes.button}
-                                        aria-label="Add to shopping cart"
+                                        // className={classes.button}
+                                        aria-label="Remove item from order"
                                       >
                                         <DeleteRoundedIcon />
                                       </IconButton>
@@ -410,22 +410,7 @@ class ConnectedOrderModal extends PureComponent {
                             ))}
                           <TableRow>
                             <TableCell colSpan={2}>
-                              {/* <select
-                                className={`form-control ${
-                                  classes.selectEmpty
-                                }`}
-                                onClick={e => this._addItem(e, e.target.value)}
-                              >
-                              <option disabled selected value> -- select an option -- </option>
-                                {this.props.items &&
-                                  this.props.items.map(item => (
-                                    <option key={item._id} value={item._id}>
-                                      {item.name}
-                                    </option>
-                                  ))}
-                              </select> */
                               <ItemSuggestion addItem={itemId => this._addItem(itemId)}/>
-                              }
                             </TableCell>
                             <TableCell colSpan={4} />
                           </TableRow>

@@ -170,42 +170,16 @@ class ConnectedOrder extends Component {
                 {this.props.orders.map(order => (
                   <TableRow key={order._id}>
                     <TableCell className={classes.tablecell2}>
-                      {/* <button
-                                    className="btn btn-circle"
-                                    style={{ marginLeft: "5px" }}
-                                    onClick={e =>
-                                      this._removeItem(e, item.itemId)
-                                    }
-                                    disabled
-                                    name={order._id}
-                                    text=""
-                                  >
-                                    <DeleteRoundedIcon />
-                                  </button> */}
-                      {/* <button
-                        name={order._id}
-                        onClick={e => this._showUpdateModal(e, order._id)}
-                        className="btn btn-circle"
-                      >
-                        <DeleteRoundedIcon />
-                      </button> */}
                       <IconButton
                         onClick={e => this._showUpdateModal(e, order._id)}
                         className={classes.button}
-                        aria-label="Add to shopping cart"
+                        aria-label="Update Order"
                       >
                         <EditIcon />
                       </IconButton>
                     </TableCell>
                     <TableCell className={classes.tablecell}>
-                      {/* <button
-                        name={order._id}
-                        type="button"
-                        onClick={e => this._showUpdateModal(e)}
-                        className="btn btn-link"
-                      > */}
                       {order._id}
-                      {/* </button> */}
                     </TableCell>
                     <TableCell className={classes.tablecell} align="right">
                       {new Date(order.createdDate).toLocaleString()}

@@ -14,9 +14,11 @@ import {
 } from "../constants/action-types.js"
 
 
+const baseUrl = "http://localhost:3001/api";
+
 export function isLogged(payload) {
   return function(dispatch) {
-    return fetch("http://localhost:3001/api/auth/login", {
+    return fetch(`${baseUrl}/auth/login`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -51,7 +53,7 @@ export function isLogged(payload) {
 
 export function loginUser(payload) {
   return function(dispatch) {
-    return fetch("http://localhost:3001/api/auth/login", {
+    return fetch(`${baseUrl}/auth/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -95,7 +97,7 @@ export function loginUser(payload) {
 
 export function logout(payload) {
   return function(dispatch) {
-    return fetch("http://localhost:3001/api/auth/logout", {
+    return fetch(`${baseUrl}/auth/logout`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -129,7 +131,7 @@ export function logout(payload) {
 export function updateQuantity(payload) {
   return function(dispatch) {
     return fetch(
-      `http://localhost:3001/api/order/${payload.orderId}/items/${
+      `${baseUrl}/order/${payload.orderId}/items/${
         payload.itemId
       }`,
       {
@@ -188,7 +190,7 @@ export function updateQuantity(payload) {
 
 export function loadOrders() {
   return function(dispatch) {
-    return fetch("http://localhost:3001/api/orders", {
+    return fetch(`${baseUrl}/orders`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -235,7 +237,7 @@ export function loadOrders() {
 
 export function addItem(payload) {
   return function(dispatch) {
-    return fetch(`http://localhost:3001/api/order/${payload.orderId}/items`, {
+    return fetch(`${baseUrl}/order/${payload.orderId}/items`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -290,7 +292,7 @@ export function addItem(payload) {
 
 export function removeItem(payload) {
   return function(dispatch) {
-    return fetch(`http://localhost:3001/api/order/${payload.orderId}/items/${payload.itemId}`, {
+    return fetch(`${baseUrl}/order/${payload.orderId}/items/${payload.itemId}`, {
       method: "DELETE",
       credentials: "include",
       headers: {
@@ -343,7 +345,7 @@ export function removeItem(payload) {
 
 export function addOrder(payload) {
   return function(dispatch) {
-    return fetch("http://localhost:3001/api/orders", {
+    return fetch(`${baseUrl}/orders`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -399,7 +401,7 @@ export function addOrder(payload) {
 
 export function loadOrder(orderId) {
   return function(dispatch) {
-    return fetch(`http://localhost:3001/api/orders/${orderId}`, {
+    return fetch(`${baseUrl}/orders/${orderId}`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -446,11 +448,11 @@ export function loadOrder(orderId) {
 
 export function loadItems(name) {
   return function(dispatch) {
-    let baseUrl = "http://localhost:3001/api/items";
+    let url = `${baseUrl}/items`;
     if (name) {
-      baseUrl = baseUrl + `?name=${name}`;
+      url = url + `?name=${name}`;
     }
-    return fetch(baseUrl, {
+    return fetch(url, {
       method: "GET",
       credentials: "include",
       headers: {
