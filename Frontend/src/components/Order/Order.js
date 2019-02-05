@@ -33,6 +33,7 @@ let mapStateToProps = state => ({
   isUpdate: state.orderReducer.isUpdate,
   orders: state.orderReducer.orders,
   isAuthenticated: state.loginReducer.isAuthenticated,
+  userId: state.loginReducer.userId,
   add_status: state.orderReducer.add_order
 });
 
@@ -58,14 +59,6 @@ class ConnectedOrder extends Component {
     super(props);
     this.state = {
       showModal: false,
-      order: {
-        createdDate: new Date(),
-        userId: localStorage.getItem("isLogged"),
-        discountPercentage: 10,
-        openStatus: true,
-        amount: 0,
-        items: []
-      },
       updateOrderId: "",
       quantity: null,
       isUpdate: false
@@ -96,9 +89,6 @@ class ConnectedOrder extends Component {
   _showUpdateModal(e, orderId) {
     this.props.loadOrder(orderId).then(result => {
       if (result) {
-        this.setState({
-          order: this.props.order
-        });
 
         let quantity = this.props.order.items.map(item => ({
           [item.itemId]: item.quantity
@@ -121,15 +111,7 @@ class ConnectedOrder extends Component {
 
   async _closeModal() {
     this.setState({
-      showModal: false,
-      order: {
-        createdDate: new Date(),
-        userId: localStorage.getItem("isLogged"),
-        discountPercentage: 10,
-        openStatus: true,
-        amount: 0,
-        items: []
-      }
+      showModal: false
     });
     await this.props.loadOrders().then(result => {
       if (result) {

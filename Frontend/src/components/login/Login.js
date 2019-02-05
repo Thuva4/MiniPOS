@@ -4,7 +4,6 @@ import { loginUser } from "../../actions/index";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import { addAlert } from "../../actions/index";
 
 import Styles from "../Styles/Styles.js"
@@ -76,7 +75,6 @@ class ConnectedLogin extends PureComponent {
     let { classes } = this.props;
     return (
       <div className={`${classes.login} formContent`}>
-      <Card>
         <div className="first">
           <TextField
             required
@@ -138,7 +136,6 @@ class ConnectedLogin extends PureComponent {
             <label>{this.props.alert}</label>
           </div>
         )}
-        </Card>
       </div>
     );
   }

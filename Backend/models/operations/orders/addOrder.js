@@ -4,6 +4,7 @@ let addOrder = function(req, res, callback) {
     if (req.body){
         let orderData = {
             ...req.body,
+            userId: req.session.userId,
             orderedDate: new Date(req.body.orderedDate)
         };
         Order.create(orderData, function (err, item) {

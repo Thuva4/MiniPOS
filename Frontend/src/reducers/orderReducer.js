@@ -1,5 +1,6 @@
 function orderReducer(state = { orders: [], alert: "", order: {
           createdDate: new Date(),
+          modifiedDate: new Date(),
           userId: "",
           discountPercentage: 10,
           openStatus: true,

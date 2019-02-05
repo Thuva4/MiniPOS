@@ -16,6 +16,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Typography from '@material-ui/core/Typography';
 import Paper from "@material-ui/core/Paper";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import Grid from "@material-ui/core/Grid";
@@ -26,7 +27,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Styles from "../Styles/Styles.js";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import withMobileDialog from "@material-ui/core/withMobileDialog";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -76,7 +76,6 @@ class ConnectedOrderModal extends PureComponent {
   }
 
   _addItem(itemId) {
-    // console.log(e.target.selectedIndex);
 
     const newItem = this.props.items
       .filter(item => item._id === itemId)
@@ -155,7 +154,7 @@ class ConnectedOrderModal extends PureComponent {
     if (this.props.isUpdate) {
       this.props.order.items.filter(item => {
         if (item.itemId === e.target.name) {
-          if (e.target.value !== item.quantity) {
+          if (e.target.value != item.quantity) {
             this.props
               .updateQuantity({
                 quantity: e.target.value,
@@ -194,14 +193,17 @@ class ConnectedOrderModal extends PureComponent {
   _validate(e) {
     let theEvent = e || window.event;
     let key;
-    console.log(theEvent);
     key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode(key);
-    var regex = /[0-9]|\./;
-    if (!regex.test(key)) {
-      theEvent.returnValue = false;
-      if (theEvent.preventDefault) theEvent.preventDefault();
-      this.props.alert("Quantity must be numeric", "warning");
+    if(key!==13){
+      key = String.fromCharCode(key);
+      var regex = /[0-9]|\./;
+      if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+        this.props.alert("Quantity must be numeric", "warning");
+      }
+    } else {
+      this._updateQuantity(e);
     }
   }
 
@@ -243,14 +245,14 @@ class ConnectedOrderModal extends PureComponent {
           >
             <div style={{ width: "100%" }}>
               <DialogContent>
-                <DialogTitle id="alert-dialog-title">
-                  {this.props.isUpdate ? "Update Order" : "New Order"}
-                </DialogTitle>
                 <div>
                   <Card className={classes.card}>
                     <CardContent>
+                      <Typography className="text-center" gutterBottom variant="h2" component="h1">
+                        {this.props.isUpdate ? "Update Order" : "New Order"}
+                      </Typography>
                       <div className="row p-5 text-center">
-                        <div className="col-md-6 text-left">
+                        <div className="col-xs-6 text-left">
                           <p className="text-muted">
                             Created At:{" "}
                             {new Date(
@@ -271,12 +273,22 @@ class ConnectedOrderModal extends PureComponent {
                             </>
                           )}
                         </div>
-                        <div className="col-md-6 text-right">
-                          <p className="font-weight-bold mb-4">Order Details</p>
+                        <div className="col-xs-6 text-right">
+                        { this.props.isUpdate ? 
+                        (
+                        <><p className="mb-1">
+                            <span className="text-muted">Order Id: </span>{" "}
+                            {this.props.order._id}
+                          </p>
                           <p className="mb-1">
-                            <span className="text-muted">UserId: </span>{" "}
+                            <span className="text-muted">User Id: </span>{" "}
                             {this.props.order.userId}
                           </p>
+                          </>)
+                          :
+                          (<p className="font-weight-bold mb-4">Order Details</p>)
+                        }
+                          
                           <p className="mb-1">
                             <span className="text-muted">Status:</span>{" "}
                             {this.props.order.openStatus && "Open"}
