@@ -9,22 +9,14 @@ import Alert from "./components/Alert/Alert";
 import { connect } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
 import AlertsOverlayComponent from "./components/Alert/AlertsOverlayComponent";
-import {isLogged} from "./actions/index"
 
 let mapStateToProps = state => ({
   alerts: state.alertReducer
 });
 
-function mapDispatchToProps(dispatch){
-  return{
-    isLogged: ()=> dispatch(isLogged())
-  }
-}
-
 class App extends Component {
-  async componentDidMount(){
-    await this.props.isLogged();
-  }
+
+
   render() {
     var { alerts } = this.props;
     return (
@@ -47,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

@@ -30,6 +30,7 @@ app.use(session({
     secret: "qwertyuiop",
     resave: true,
     saveUninitialized: false,
+    cookie: { maxAge: 60 * 60 * 1000,httpOnly: true},
     store: new MongoStore({
         mongooseConnection: db
     })
@@ -38,7 +39,7 @@ app.use(helmet());
 
 app.use(cors({
     origin: "http://localhost:3000",
-    credentials: true,
+    credentials: true
 }));
 
 app.use(router);
