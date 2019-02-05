@@ -76,7 +76,6 @@ class ConnectedOrderModal extends PureComponent {
   }
 
   _addItem(itemId) {
-
     const newItem = this.props.items
       .filter(item => item._id === itemId)
       .map(item => {
@@ -125,7 +124,6 @@ class ConnectedOrderModal extends PureComponent {
         });
         let order = {
           ...this.props.order,
-          userId: this.props.userId,
           items: items,
           amount: total * (1 - this.props.order.discountPercentage / 100)
         };
@@ -141,7 +139,6 @@ class ConnectedOrderModal extends PureComponent {
             });
           }
         });
-
         this.props.updateModal();
       }
     } else {
@@ -171,15 +168,11 @@ class ConnectedOrderModal extends PureComponent {
                     }
                   });
                 } else {
-                  let quantity = this.props.order.items.map(item => ({
-                    [item.itemId]: item.quantity
-                  }));
-                  quantity = Object.assign(
-                    {},
-                    ...quantity.map(element => element)
-                  );
                   this.setState({
-                    quantity: quantity
+                    quantity: {
+                      ...this.state.quantity,
+                      [item.itemId] : item.quantity
+                    }
                   });
                 }
               });

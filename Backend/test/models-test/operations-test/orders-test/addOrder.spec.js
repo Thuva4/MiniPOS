@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 let sinon = require("sinon");
-
 let Order = require("../../../../models/schema/Order");
 let addOrder = require("../../../../models/operations/orders/addOrder");
  
 describe("Add Item Function", function() {
     beforeEach(function() {
+        // eslint-disable-next-line no-console
         sinon.stub(Order, "create");
     });
  
@@ -37,7 +37,7 @@ describe("Add Item Function", function() {
         };
 
         Order.create.yields(null, testOrder);
-        let req = { body: { } };
+        let req = { session: {}, body: { } };
         let res = {};
         let callback = sinon.stub();
  

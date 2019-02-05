@@ -1,8 +1,9 @@
+const config = require("../config/index");
 //Import the mongoose module
 let mongoose = require("mongoose");
 
 //Set up default mongoose connection
-let mongoDB = "mongodb://127.0.0.1/miniproject";
+let mongoDB = config.db;
 const options = { useMongoClient: true};
 // Get Mongoose to use the global promise library
 mongoose.Promise = require("bluebird");

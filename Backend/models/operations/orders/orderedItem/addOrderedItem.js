@@ -18,7 +18,7 @@ let addOrderedItem = function(req, res, callback) {
                                         status: 400,
                                         message: "Item already exists. Update the item to change the quantity!"
                                     };
-                                    callback(null, error);
+                                    callback(error, null);
                                 } else {
                                     order.items = order.items.concat([itemData]);       
                                     return order.save();
@@ -41,7 +41,7 @@ let addOrderedItem = function(req, res, callback) {
                         callback(null, item);
                     }).catch(error => {
                         let err = {
-                            status: 500,
+                            status: 400,
                             message: error.message
                         };
                         callback(err, null);

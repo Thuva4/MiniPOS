@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf dist && webpack --mode development",
     "start": "node server.js",
-    "test": "nyc mocha test/ --recursive"
+    "test": "NODE_ENV=test nyc mocha test/ --recursive --exit"
   },
   "dependencies": {
     "async": "^1.5.2",
