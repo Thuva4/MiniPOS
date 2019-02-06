@@ -7,7 +7,7 @@ let should =  require("chai").should();
 let Cookies;
 let orderId;
 let itemId;
-var expect = chai.expect;
+let expect = chai.expect;
 describe("orders API", function() { 
     let order = {
         "createdDate": "2019-02-05 06:02:56.605",
@@ -26,9 +26,7 @@ describe("orders API", function() {
         "userId": ""
     };
 
-
-    let orderedItem = {
-        "itemId": "5c48575af0c54979d14846c5",
+    let orderedItemWithoutId = {
         "name": "Apple",
         "quantity": 10,
         "discountPercentage": 5,
@@ -36,7 +34,14 @@ describe("orders API", function() {
         "price": 55
     };
 
-    let orderedItemInvalid = {
+
+
+    let orderedItem = {
+        ...orderedItemWithoutId,
+        "itemId": "5c48575af0c54979d14846c5",
+    };
+
+    let orderedItemCategory = {
         ...order,
         "category": "random"
         
@@ -120,9 +125,21 @@ describe("orders API", function() {
             req.cookies = Cookies;
             req.send(orderedItem).end(function(err, res) { 
                 expect(res.statusCode).to.equal(400); 
+                expect(res.text).to.equal("Order Id is not valid"); 
                 done(); 
             }); 
         }); 
+
+        it("should send bad request status for unknown orderId", function(done) { 
+            let req = request(app).post("/api/order/5c48575af0c54979d14846c5/items");
+            req.cookies = Cookies;
+            req.send(orderedItem).end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                expect(res.text).to.equal("Order is not found"); 
+                done(); 
+            }); 
+        }); 
+
 
         it("should send bad request status for empty body", function(done) { 
             let req = request(app).post(`/api/order/${orderId}/items`);
@@ -137,7 +154,7 @@ describe("orders API", function() {
             let req = request(app).post(`/api/order/${orderId}/items`);
             req.cookies = Cookies;
             req.send(orderedItemInvalidName).end(function(err, res) { 
-                expect(res.statusCode).to.equal(400); 
+                expect(res.statusCode).to.equal(500); 
                 done(); 
             }); 
         }); 
@@ -161,10 +178,20 @@ describe("orders API", function() {
             }); 
         }); 
 
+        it("should send bad request if item exist", function(done) { 
+            let req = request(app).post(`/api/order/${orderId}/items`);
+            req.cookies = Cookies;
+            req.send(orderedItemWithoutId).end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                expect(res.text).to.equal("itemId is required"); 
+                done(); 
+            }); 
+        }); 
+
         it("should send bad request for unknown item category", function(done) { 
             let req = request(app).post(`/api/order/${orderId}/items`);
             req.cookies = Cookies;
-            req.send(orderedItemInvalid).end(function(err, res) { 
+            req.send(orderedItemCategory).end(function(err, res) { 
                 expect(res.statusCode).to.equal(400); 
                 done(); 
             }); 
@@ -184,6 +211,34 @@ describe("orders API", function() {
 
         it("should send bad request status for unknown orderId", function(done) { 
             let req = request(app).put(`/api/order/dfkjdshf/items/${itemId}`);
+            req.cookies = Cookies;
+            req.send(updateOrderQuantity).end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                done(); 
+            }); 
+        }); 
+
+
+        it("should send bad request status for unknown orderId", function(done) { 
+            let req = request(app).put(`/api/order/5c48575af0c54979d14846c5/items/${itemId}`);
+            req.cookies = Cookies;
+            req.send(updateOrderQuantity).end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                done(); 
+            }); 
+        }); 
+
+        it("should send bad request status for unknown orderId", function(done) { 
+            let req = request(app).put(`/api/order/5c48575af0c54979d14846c5/items/${itemId}`);
+            req.cookies = Cookies;
+            req.send(updateOrderQuantity).end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                done(); 
+            }); 
+        }); 
+
+        it("should send bad request status for unknown orderId", function(done) { 
+            let req = request(app).put(`/api/order/${orderId}/items/5c48575af0c54979d14846ch`);
             req.cookies = Cookies;
             req.send(updateOrderQuantity).end(function(err, res) { 
                 expect(res.statusCode).to.equal(400); 

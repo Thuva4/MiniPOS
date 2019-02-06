@@ -5,7 +5,8 @@ let chai = require("chai");
 let request = require("supertest");
 let should =  require("chai").should();
 let Cookies;
-var expect = chai.expect;
+let orderId;
+let expect = chai.expect;
 describe("orders API", function() { 
     let order = {
         "createdDate": "2019-02-05 06:02:56.605",
@@ -54,34 +55,16 @@ describe("orders API", function() {
                 done();
             });
     });
-    describe("Get Orders API", function() { 
-
-        it("should send Unauthorized status", function(done) { 
-            let req = request(app).get("/api/orders");
-            req.end(function(err, res) { 
-                expect(res.statusCode).to.equal(401); 
-                done(); 
-            }); 
-        }); 
-
-   
-        it("should get all orders", function(done) { 
-            let req = request(app).get("/api/orders");
-            req.cookies = Cookies;
-            req.end(function(err, res) { 
-                expect(res.statusCode).to.equal(200); 
-                done(); 
-            }); 
-        }); 
-    });
 
     describe("Create order API ", function() { 
+
         it("should create a order", function(done) { 
             let req = request(app).post("/api/orders");
             req.cookies = Cookies;
             req.send(order).end(function(err, res) { 
                 expect(res.statusCode).to.equal(200); 
                 expect(res.body.userId).to.equal(order.userId); 
+                orderId = order.userId;
                 done(); 
             }); 
         }); 
@@ -103,4 +86,58 @@ describe("orders API", function() {
             done(); 
         }); 
     }); 
+
+
+    describe("Get Orders API", function() { 
+
+        it("should send Unauthorized status", function(done) { 
+            let req = request(app).get("/api/orders");
+            req.end(function(err, res) { 
+                expect(res.statusCode).to.equal(401); 
+                done(); 
+            }); 
+        }); 
+
+   
+        it("should get all orders", function(done) { 
+            let req = request(app).get("/api/orders");
+            req.cookies = Cookies;
+            req.end(function(err, res) { 
+                expect(res.statusCode).to.equal(200); 
+                done(); 
+            }); 
+        }); 
+    });
+
+
+    describe("Get Orders API", function() { 
+
+        it("should send Unauthorized status", function(done) { 
+            let req = request(app).get(`/api/orders/${orderId}`);
+            req.end(function(err, res) { 
+                expect(res.statusCode).to.equal(401); 
+                done(); 
+            }); 
+        }); 
+
+   
+        it("should send bad request status for unknown orderId", function(done) { 
+            let req = request(app).get("/api/orders/afsdf");
+            req.cookies = Cookies;
+            req.end(function(err, res) { 
+                expect(res.statusCode).to.equal(400); 
+                done(); 
+            }); 
+        }); 
+
+        it("should get order", function(done) { 
+            let req = request(app).get(`/api/orders/${orderId}`);
+            req.cookies = Cookies;
+            req.end(function(err, res) { 
+                expect(res.statusCode).to.equal(200); 
+                done(); 
+            }); 
+        }); 
+    });
+
 });
